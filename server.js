@@ -58,8 +58,8 @@ app.post('/posts', (req, res) => {
       title: req.body.title,
       content: req.body.content,
       author: {
-        firstName: req.body.author.firstName,
-        lastName: req.body.author.lastName
+        firstName: req.body.firstName,
+        lastName: req.body.lastName
       }
     })
     .then(
