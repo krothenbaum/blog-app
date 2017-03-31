@@ -57,10 +57,7 @@ app.post('/posts', (req, res) => {
     .create({
       title: req.body.title,
       content: req.body.content,
-      author: {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName
-      }
+      author: req.body.author
     })
     .then(
       post => res.status(201).json(post.apiRepr()))
