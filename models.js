@@ -12,12 +12,9 @@ const blogPostSchema = mongoose.Schema({
 });
 
 blogPostSchema.virtual('authorName').get(function() {
-  return `${this.author.firstName} ${this.author.lastName}`
+  return `${this.author.firstName} ${this.author.lastName}`.trim();
 });
 
-// this is an *instance method* which will be available on all instances
-// of the model. This method will be used to return an object that only
-// exposes *some* of the fields we want from the underlying data
 blogPostSchema.methods.apiRepr = function() {
   return {
     id: this._id,
@@ -30,4 +27,4 @@ blogPostSchema.methods.apiRepr = function() {
 
 const BlogPost = mongoose.model('BlogPost', blogPostSchema);
 
-module.exports = {Restaurant};
+module.exports = {BlogPost};

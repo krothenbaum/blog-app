@@ -1,31 +1,25 @@
 const express = require('express');
-const router = express.Router();
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
-mongoose.Promise = global.Promise;
-
 const {PORT, DATABASE_URL} = require('./config');
 const {BlogPost} = require('./models');
 
-const jsonParser = bodyParser.json();
 const app = express();
 
-// log the http layer
+app.use(bodyParser.json());
 app.use(morgan('common'));
+
+mongoose.Promise = global.Promise;
 
 // GET requests to /posts => return 10 blog posts
 app.get('/posts', (req, res) => {
   BlogPost
     .find()
-    .limit(10)
     .exec()
     .then(posts => {
-      res.json({
-        pots: posts.map(
-          (posts) => posts.apiRepr())
-      });
+      res.json(posts.map(post => post.apiRepr()));
     })
     .catch(
       err => {
@@ -64,8 +58,8 @@ app.post('/posts', (req, res) => {
       title: req.body.title,
       content: req.body.content,
       author: {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName
+        firstName: req.body.author.firstName,
+        lastName: req.body.author.lastName
       }
     })
     .then(
@@ -76,7 +70,7 @@ app.post('/posts', (req, res) => {
     });
 });
 
-app.put('/posts/:id', jsonParser, (req, res) => {
+app.put('/posts/:id', (req, res) => {
 
   if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
     const message = (`Request path id (${req.params.id}) and request body id (${req.body.id}) must match`);
