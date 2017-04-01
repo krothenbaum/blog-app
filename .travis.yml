@@ -1,0 +1,11 @@
+language: node_js
+node_js: node
+services:
+- mongodb
+deploy:
+  provider: heroku
+  api_key:
+    secure: LbxQ1YCRjYl/+oZgmKAdsPziEq0X8GYNgCHGQZd4IwAjVwSTkfJHgRzcV5M9g/i3XjvBUfo83xk8HLgr8wkCBtUz4cxXjTVpFjB2bOVnoZLrDSTrn/CPbYI2ZT82YvaLZEOGCVRaaSJ72i1VcujPXGCVrnoZzfG95RML0yzjP0RVWSG6zZDH6vX2WZP8M7JxYw8+rsRyXkL6HZy2UVD1OPSY0Z2qh4EflOksB9VC4jdWo6IN+B6iapOJAPiCDnZnhm2BNgXXOtaWStDGmC03ZXcLFHloXFZxxZ356dlcVhdt6kz0r6a/uOGBnjrQ/1nmDmxzNoVzKI0BcbjSrWQFQo+eu6+lCkLSdXL0nbQJg//MiUamVI+Pjbaz7o7QZl8X2QwSycI59qRExj/6egDpUVIGjNgyi7tUkZynAJKSOcIqXr1rG2zRNxJeAL4mvLY53mG+8pmz8wNDGkyVeiV4ckQeHC2hnB1MxCI1jKMqC8AAfUgZlxLnp9sB+VaVq9CTV/PEKdlFhtihmhzVe40zIBnzvxId6dhYJldHyuTAUmk8NtB9QhI9YYbEmdpQC7xMOJRpPXPa2GYXAN6bJfht8tSNuIu0SsGsKqIEI+dittuK29W1x4FQ1UB7r1/OdCfGLrw/egCiTEMRH/6LKbYH1qrEUtwiZZON2AMCIHE1AeM=
+  app: secret-spire-77354
+  on:
+    repo: krothenbaum/blog-app
